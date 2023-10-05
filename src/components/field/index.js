@@ -21,9 +21,9 @@ function startAnimation(animation, options, callback) {
 
 function labelStateFromProps(props, state) {
   let { placeholder, defaultValue } = props
-  let { value, receivedFocus } = state
+  let { value } = state
 
-  return !!(placeholder || value || (!receivedFocus && defaultValue))
+  return !!(placeholder || value || defaultValue)
 }
 
 function errorStateFromProps(props, state) {
