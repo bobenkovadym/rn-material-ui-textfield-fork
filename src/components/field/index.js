@@ -21,10 +21,11 @@ function startAnimation(animation, options, callback) {
 
 function labelStateFromProps(props, state) {
   let { placeholder, defaultValue } = props
-  let { value } = state
+  let { value, receivedFocus } = state
 
-  return !!(placeholder || value || defaultValue)
+  return !!(placeholder || value || (!receivedFocus && defaultValue))
 }
+
 
 function errorStateFromProps(props, state) {
   let { error } = props
@@ -152,8 +153,8 @@ export default class TextField extends PureComponent {
       newState.error = error
     }
 
-    if (value !== undefined && value !== state.value) {
-      newState.value = value
+    if ((value !== undefined || defaultValue !== undefined) && (value || defaultValue) !== state.value) {
+      newState.value = value || defaultValue
     }
 
     return newState
